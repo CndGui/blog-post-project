@@ -11,10 +11,18 @@ interface Props {
     isLoading: boolean
 }
 
+interface Loading {
+    id: number
+    isLoading: boolean
+}
+
 export function Posts({ user, isLoading }: Props) {
     const client = useQueryClient()
 
-    const [loading, setLoading] = useState<boolean>(false)
+    const [loading, setLoading] = useState<Loading>({
+        id: 0,
+        isLoading: false
+    })
 
     return (
         isLoading
@@ -32,18 +40,24 @@ export function Posts({ user, isLoading }: Props) {
 
                             <button
                                 onClick={async () => {
-                                    setLoading(true)
+                                    setLoading({
+                                        id: post.id as number,
+                                        isLoading: true
+                                    })
                                     await deletePost(post.id as number)
 
                                     await client.invalidateQueries("user")
                                     await client.invalidateQueries("posts")
                                     
-                                    setLoading(false)
+                                    setLoading({
+                                        id: 0,
+                                        isLoading: false
+                                    })
                                 }}
-                                disabled={loading}
+                                disabled={loading.isLoading}
                                 className="ml-auto cursor-pointer hover:scale-110 transition-opacity duration-75 flex items-center justify-center disabled:cursor-default disabled:hover:scale-100"
                             >
-                                {loading ? <span>...</span> : <IoTrashOutline size={20} />}
+                                {loading.id == post.id ? loading.isLoading ? <span>...</span> : <IoTrashOutline size={20} /> : <IoTrashOutline size={20} />}
                             </button>
                         </div>
                     ))}
