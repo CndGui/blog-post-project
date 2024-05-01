@@ -40,7 +40,7 @@ export function NewPostButton({ color }: Props) {
             })
 
             client.invalidateQueries("posts")
-            client.invalidateQueries("users")
+            client.invalidateQueries("user")
         } else {
             setLoading(false)
             return setErrorMessage(result.data.message)
