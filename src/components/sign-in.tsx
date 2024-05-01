@@ -95,9 +95,8 @@ export function SignIn() {
                 </form>
 
                 <Link href={"/register"}>
-                    <p className="text-xs mt-5 text-neutral-600 cursor-pointer hover:text-blue-300">
-                        Don't have an account yet? Register by clicking here.
-                    </p>
+                {/* eslint-disable react/no-unescaped-entities */}
+                    <p className="text-xs mt-5 text-neutral-600 cursor-pointer hover:text-blue-300">Don't have an account yet? Register by clicking here.</p>
                 </Link>
             </div>
         </div>

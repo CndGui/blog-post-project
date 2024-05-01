@@ -33,6 +33,7 @@ export function PostsList() {
                 ? <div className={`grid grid-cols-3 gap-3 max-[960px]:grid-cols-2 max-[546px]:grid-cols-1`}>
                     {posts.map((post: Post, index: number) => (
                         <div key={index} className="bg-neutral-800 text-white p-2 h-60 flex flex-col rounded-md">
+                            {/* eslint-disable react/no-unescaped-entities */}
                             <span className="ml-auto text-sm">{post.author.username}'s post</span>
 
                             <div>
