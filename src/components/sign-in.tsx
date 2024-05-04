@@ -46,9 +46,10 @@ export function SignIn() {
         const authResponse = await postAuthLogin(form)
         if (authResponse.status == 200) {
             localStorage.setItem("token", authResponse.data.access_token)
+            navigate(`/`)
+        }else {
+            return setErrorMessage(authResponse.data.message)
         }
-
-        navigate(`/`)
     }
 
     return (
