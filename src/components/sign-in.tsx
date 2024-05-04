@@ -48,6 +48,7 @@ export function SignIn() {
             localStorage.setItem("token", authResponse.data.access_token)
             navigate(`/`)
         }else {
+            setLoading(false)
             return setErrorMessage(authResponse.data.message)
         }
     }
