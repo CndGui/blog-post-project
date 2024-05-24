@@ -33,6 +33,10 @@ export async function POST(request: MyRequest) {
             return BadRequestException("The body is incorrect. Only 'username' and 'password' fields are allowed.")
         }
 
+        if (body.username.length > 17) {
+            return BadRequestException("The max characters for username's is 16.")
+        }
+
         const usersUsername = (await prisma.user.findMany()).map(user => user.username.toLowerCase())
         if (usersUsername.includes(body.username.toLowerCase())) {
             return BadRequestException("The username is already registered.")

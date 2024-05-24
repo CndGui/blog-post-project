@@ -37,9 +37,11 @@ export function PostsList() {
                             <span className="ml-auto text-sm">{post.author.username}'s post</span>
 
                             <div>
-                                <p className="text-xl">{post.title}</p>
+                                <div className="overflow-y-auto h-8">
+                                    <p className="text-xl">{post.title}</p>
+                                </div>
 
-                                <div className="overflow-auto h-40 p-2 bg-neutral-700 rounded-md mt-2">
+                                <div className="overflow-y-auto overflow-x-hidden h-40 p-2 bg-neutral-700 rounded-md mt-2">
                                     <p className="break-words">{post.description}</p>
                                 </div>
                             </div>
